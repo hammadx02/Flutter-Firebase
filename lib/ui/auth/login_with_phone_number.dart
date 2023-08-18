@@ -14,6 +14,7 @@ class LoginWithPhoneNumber extends StatefulWidget {
 
 final phoneNumberController = TextEditingController();
 final auth = FirebaseAuth.instance;
+bool loading = false;
 
 class _LoginWithPhoneNumberState extends State<LoginWithPhoneNumber> {
   @override
@@ -24,6 +25,9 @@ class _LoginWithPhoneNumberState extends State<LoginWithPhoneNumber> {
       ),
       body: Column(
         children: [
+          const SizedBox(
+            height: 50,
+          ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: TextFormField(
@@ -59,17 +63,28 @@ class _LoginWithPhoneNumberState extends State<LoginWithPhoneNumber> {
             ),
           ),
           const SizedBox(
-            height: 50,
+            height: 80,
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20.0),
             child: RoundButton(
+              loading: loading,
               onTap: () {
+                setState(() {
+                  loading = true;
+                });
                 auth.verifyPhoneNumber(
                     phoneNumber: phoneNumberController.text,
-                    verificationCompleted: (_) {},
+                    verificationCompleted: (_) {
+                      setState(() {
+                        loading = true;
+                      });
+                    },
                     verificationFailed: (e) {
                       Utils().toastMessage(e.toString());
+                      setState(() {
+                        loading = false;
+                      });
                     },
                     codeSent: (String verificationId, int? token) {
                       Navigator.push(
@@ -79,8 +94,14 @@ class _LoginWithPhoneNumberState extends State<LoginWithPhoneNumber> {
                               VerifyCodeScreen(verificationId: verificationId),
                         ),
                       );
+                      setState(() {
+                        loading = false;
+                      });
                     },
                     codeAutoRetrievalTimeout: (e) {
+                      setState(() {
+                        loading = false;
+                      });
                       Utils().toastMessage(e.toString());
                     });
               },

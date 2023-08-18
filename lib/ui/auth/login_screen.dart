@@ -224,16 +224,20 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   );
                 },
-                child: Container(
-                  height: 50,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    color: Colors.deepOrange[500],
-                    borderRadius: BorderRadius.circular(50),
-                  ),
-                  child: const Center(
-                    child: Text(
-                      'Login with phone number',
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                  child: Container(
+                    height: 50,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.black),
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(50),
+                    ),
+                    child: const Center(
+                      child: Text(
+                        'Login with phone number',
+                      ),
                     ),
                   ),
                 ),
