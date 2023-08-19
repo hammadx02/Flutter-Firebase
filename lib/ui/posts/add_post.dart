@@ -66,16 +66,17 @@ class _AddPostScreenState extends State<AddPostScreen> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20.0),
             child: RoundButton(
+              loading: loading,
               title: 'Add',
               onTap: () {
                 setState(() {
                   loading = true;
                 });
-                databaseRef
-                    .child(DateTime.now().millisecondsSinceEpoch.toString())
-                    .set({
-                  'id': DateTime.now().millisecondsSinceEpoch.toString(),
-                  'title': postController.toString()
+
+                String id = DateTime.now().millisecondsSinceEpoch.toString();
+                databaseRef.child(id).set({
+                  'id': id,
+                  'title': postController.text.toString()
                 }).then((value) {
                   setState(() {
                     loading = false;
