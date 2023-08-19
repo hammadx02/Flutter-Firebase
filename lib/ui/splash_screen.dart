@@ -22,7 +22,7 @@ class _SplashScreenState extends State<SplashScreen> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        backgroundColor: Colors.deepOrange[500],
+        backgroundColor: Colors.deepPurple[300],
         body: const Center(
           child: Text(
             'Firebase Practice',

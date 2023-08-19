@@ -1,45 +1,38 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_firebase/ui/posts/post_screen.dart';
 import 'package:flutter_firebase/utils/utils.dart';
+import 'package:flutter_firebase/widgets/round_button.dart';
+import 'package:firebase_database/firebase_database.dart';
 
-import '../../widgets/round_button.dart';
-import 'login_with_phone_number.dart';
-
-// ignore: must_be_immutable
-class VerifyCodeScreen extends StatefulWidget {
-  VerifyCodeScreen({super.key, required this.verificationId});
-
-  final String verificationId;
-
-  final auth = FirebaseAuth.instance;
-  bool loading = false;
+class AddPostScreen extends StatefulWidget {
+  const AddPostScreen({super.key});
 
   @override
-  State<VerifyCodeScreen> createState() => _VerifyCodeScreenState();
+  State<AddPostScreen> createState() => _AddPostScreenState();
 }
 
-class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
-  final verificationCodeController = TextEditingController();
+final databaseRef = FirebaseDatabase.instance.ref('Post');
+bool loading = false;
+final postController = TextEditingController();
 
+class _AddPostScreenState extends State<AddPostScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Verify'),
+        title: const Text('Add post'),
       ),
       body: Column(
         children: [
           const SizedBox(
-            height: 50,
+            height: 30,
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: TextFormField(
-              controller: verificationCodeController,
+              controller: postController,
+              maxLines: 4,
               decoration: InputDecoration(
-                prefixIcon: const Icon(Icons.phone_android_outlined),
-                hintText: '6 digit code',
+                hintText: 'What is in your mind?',
                 focusedBorder: OutlineInputBorder(
                   borderSide: const BorderSide(
                     color: Colors.deepPurple,
@@ -68,41 +61,33 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
             ),
           ),
           const SizedBox(
-            height: 80,
+            height: 30,
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20.0),
             child: RoundButton(
-              onTap: () async {
-                final credential = PhoneAuthProvider.credential(
-                    verificationId: widget.verificationId,
-                    smsCode: verificationCodeController.text.toString());
-
+              title: 'Add',
+              onTap: () {
                 setState(() {
                   loading = true;
                 });
-                try {
-                  await auth.signInWithCredential(credential);
-
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => PostScreen(),
-                    ),
-                  );
-                } catch (e) {
-                  Utils().toastMessage(
-                    e.toString(),
-                  );
-                  setState(
-                    () {
-                      loading = false;
-                    },
-                  );
-                }
+                databaseRef
+                    .child(DateTime.now().millisecondsSinceEpoch.toString())
+                    .set({
+                  'id': DateTime.now().millisecondsSinceEpoch.toString(),
+                  'title': postController.toString()
+                }).then((value) {
+                  setState(() {
+                    loading = false;
+                  });
+                  Utils().toastMessage('Post added');
+                }).onError((error, stackTrace) {
+                  Utils().toastMessage(error.toString());
+                  setState(() {
+                    loading = false;
+                  });
+                });
               },
-              title: 'Verify',
-              loading: loading,
             ),
           ),
         ],

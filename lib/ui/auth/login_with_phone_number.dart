@@ -37,25 +37,25 @@ class _LoginWithPhoneNumberState extends State<LoginWithPhoneNumber> {
                 hintText: '+92 313 999 07 58',
                 focusedBorder: OutlineInputBorder(
                   borderSide: const BorderSide(
-                    color: Colors.deepOrange,
+                    color: Colors.deepPurple,
                   ),
                   borderRadius: BorderRadius.circular(20),
                 ),
                 border: OutlineInputBorder(
                   borderSide: const BorderSide(
-                    color: Colors.deepOrange,
+                    color: Colors.deepPurple,
                   ),
                   borderRadius: BorderRadius.circular(20),
                 ),
                 enabledBorder: OutlineInputBorder(
                   borderSide: const BorderSide(
-                    color: Colors.deepOrange,
+                    color: Colors.deepPurple,
                   ),
                   borderRadius: BorderRadius.circular(20),
                 ),
                 errorBorder: OutlineInputBorder(
                   borderSide: const BorderSide(
-                    color: Colors.deepOrange,
+                    color: Colors.deepPurple,
                   ),
                   borderRadius: BorderRadius.circular(20),
                 ),

@@ -75,7 +75,7 @@ class _LoginScreenState extends State<LoginScreen> {
         },
         child: Scaffold(
           appBar: AppBar(
-            backgroundColor: Colors.deepOrange[500],
+            backgroundColor: Colors.deepPurple[500],
             title: const Center(
               child: Text('Login'),
             ),
@@ -99,25 +99,25 @@ class _LoginScreenState extends State<LoginScreen> {
                           hintText: 'Email',
                           focusedBorder: OutlineInputBorder(
                             borderSide: const BorderSide(
-                              color: Colors.deepOrange,
+                              color: Colors.deepPurple,
                             ),
                             borderRadius: BorderRadius.circular(20),
                           ),
                           enabledBorder: OutlineInputBorder(
                             borderSide: const BorderSide(
-                              color: Colors.deepOrange,
+                              color: Colors.deepPurple,
                             ),
                             borderRadius: BorderRadius.circular(20),
                           ),
                           border: OutlineInputBorder(
                             borderSide: const BorderSide(
-                              color: Colors.deepOrange,
+                              color: Colors.deepPurple,
                             ),
                             borderRadius: BorderRadius.circular(20),
                           ),
                           errorBorder: OutlineInputBorder(
                             borderSide: const BorderSide(
-                              color: Colors.deepOrange,
+                              color: Colors.deepPurple,
                             ),
                             borderRadius: BorderRadius.circular(20),
                           ),
@@ -143,25 +143,25 @@ class _LoginScreenState extends State<LoginScreen> {
                           hintText: 'Password',
                           focusedBorder: OutlineInputBorder(
                             borderSide: const BorderSide(
-                              color: Colors.deepOrange,
+                              color: Colors.deepPurple,
                             ),
                             borderRadius: BorderRadius.circular(20),
                           ),
                           border: OutlineInputBorder(
                             borderSide: const BorderSide(
-                              color: Colors.deepOrange,
+                              color: Colors.deepPurple,
                             ),
                             borderRadius: BorderRadius.circular(20),
                           ),
                           enabledBorder: OutlineInputBorder(
                             borderSide: const BorderSide(
-                              color: Colors.deepOrange,
+                              color: Colors.deepPurple,
                             ),
                             borderRadius: BorderRadius.circular(20),
                           ),
                           errorBorder: OutlineInputBorder(
                             borderSide: const BorderSide(
-                              color: Colors.deepOrange,
+                              color: Colors.deepPurple,
                             ),
                             borderRadius: BorderRadius.circular(20),
                           ),
