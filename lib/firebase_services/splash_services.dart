@@ -2,8 +2,10 @@ import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutter_firebase/ui/auth/login_screen.dart';
-import 'package:flutter_firebase/ui/posts/post_screen.dart';
+import 'package:flutter_firebase/ui/upload_image.dart';
+
 
 class SplashServices {
   void isLogin(BuildContext context) {
@@ -16,7 +18,7 @@ class SplashServices {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: ((context) => const PostScreen()),
+            builder: ((context) => const UploadImageScreen()),
           ),
         );
       });
